@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: headless-kc-service
+  namespace: mykeycloak
+spec:
+  clusterIP: None
+  selector:
+    app: keycloak-deployment

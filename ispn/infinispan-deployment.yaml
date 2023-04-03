@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: acme-ispn-service-headless
+  namespace: keycloak
+  labels:
+    app: acme-ispn-service-headless
+spec:
+  ports:
+    - name: jgroups
+      port: 7800
+      targetPort: 7800
+      protocol: TCP
+  selector:
+    app: acme-ispn
+  type: ClusterIP
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acme-ispn
+  namespace: keycloak
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: acme-ispn
+  template:
+    metadata:
+      labels:
+        app: acme-ispn
+    spec:
+      volumes:
+      - name: config-volume
+        configMap:
+          name: kc-config
+      containers:
+      - name: acme-ispn
+        image: lwalukie/infinispan:v0.0.41
+        command: ["/opt/infinispan/bin/server.sh", "-c", "infinispan-keycloak-database.xml"]
+        volumeMounts:
+          - name: config-volume
+            mountPath: /opt/infinispan/server/conf/infinispan-keycloak-database.xml
+            subPath: infinispan-keycloak-database.xml
+          - name: config-volume
+            mountPath: /opt/infinispan/server/conf/ispn-server.jks
+            subPath: ispn-server.jks
+          - name: config-volume
+            mountPath: /opt/infinispan/server/conf/users.properties
+            subPath: users.properties
+          - name: config-volume
+            mountPath: /opt/infinispan/server/conf/log4j2.xml
+            subPath: log4j2.xml
+          - name: config-volume
+            mountPath: /opt/infinispan/bin/common.sh
+            subPath: common.sh
+
+        ports:
+        - name: jgroups
+          containerPort: 7600
+        - name: console  
+          containerPort: 11222
+        env:
+          - name: jgroups.dns.query
+            value: acme-ispn-service-headless.keycloak.svc.cluster.local
+          - name: DB_USERNAME
+            value: postgres
+          - name: DB_PASSWORD
+            value: g7dnnMjAPU
+          - name: DB_DATABASE
+            value: postgres
+          - name: DB_HOSTNAME
+            value: acm-db-postgresql-ha-pgpool
+          - name: JKS_FILENAME
+            value: ispn-server.jks
+          - name: JKS_PASSWORD
+            value: password
+          - name: JKS_ALIAS
+            value: server 
+          - name: JKS_KEY_PASSWORD
+            value: password      
+          - name: JKS_SELF_SIGNED_CERTIFICATE_HOST
+            value: localhost       
