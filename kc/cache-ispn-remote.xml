@@ -50,7 +50,7 @@
                           connect-timeout="${env.KEYCLOAK_REMOTE_ISPN_CONN_TIMEOUT}"
                           raw-values="true"
                           marshaller="org.keycloak.cluster.infinispan.KeycloakHotRodMarshallerFactory">
-                <remote-server host="acme-ispn-service" port="${infinispan.bind.port:8766}"/>
+                <remote-server host="ispn-service" port="${infinispan.bind.port:8766}"/>
 
                 <security>
                     <authentication>
@@ -78,7 +78,7 @@
                           connect-timeout="${env.KEYCLOAK_REMOTE_ISPN_CONN_TIMEOUT}"
                           raw-values="true"
                           marshaller="org.keycloak.cluster.infinispan.KeycloakHotRodMarshallerFactory">
-                <remote-server host="acme-ispn-service" port="${infinispan.bind.port:8766}"/>
+                <remote-server host="ispn-service" port="${infinispan.bind.port:8766}"/>
                 <security>
                     <authentication>
                         <digest username="${env.KEYCLOAK_REMOTE_ISPN_USERNAME}"
@@ -105,7 +105,7 @@
                           connect-timeout="${env.KEYCLOAK_REMOTE_ISPN_CONN_TIMEOUT}"
                           raw-values="true"
                           marshaller="org.keycloak.cluster.infinispan.KeycloakHotRodMarshallerFactory">
-                <remote-server host="acme-ispn-service" port="${infinispan.bind.port:8766}"/>
+                <remote-server host="ispn-service" port="${infinispan.bind.port:8766}"/>
                 <security>
                     <authentication>
                         <digest username="${env.KEYCLOAK_REMOTE_ISPN_USERNAME}"
@@ -132,7 +132,7 @@
                           connect-timeout="${env.KEYCLOAK_REMOTE_ISPN_CONN_TIMEOUT}"
                           raw-values="true"
                           marshaller="org.keycloak.cluster.infinispan.KeycloakHotRodMarshallerFactory">
-                <remote-server host="acme-ispn-service" port="${infinispan.bind.port:8766}"/>
+                <remote-server host="ispn-service" port="${infinispan.bind.port:8766}"/>
                 <security>
                     <authentication>
                         <digest username="${env.KEYCLOAK_REMOTE_ISPN_USERNAME}"
@@ -159,7 +159,7 @@
                           connect-timeout="${env.KEYCLOAK_REMOTE_ISPN_CONN_TIMEOUT}"
                           raw-values="true"
                           marshaller="org.keycloak.cluster.infinispan.KeycloakHotRodMarshallerFactory">
-                <remote-server host="acme-ispn-service" port="${infinispan.bind.port:8766}"/>
+                <remote-server host="ispn-service" port="${infinispan.bind.port:8766}"/>
                 <security>
                     <authentication>
                         <digest username="${env.KEYCLOAK_REMOTE_ISPN_USERNAME}"
@@ -190,7 +190,7 @@
                           connect-timeout="${env.KEYCLOAK_REMOTE_ISPN_CONN_TIMEOUT}"
                           raw-values="true"
                           marshaller="org.keycloak.cluster.infinispan.KeycloakHotRodMarshallerFactory">
-                <remote-server host="acme-ispn-service" port="${infinispan.bind.port:8766}"/>
+                <remote-server host="ispn-service" port="${infinispan.bind.port:8766}"/>
                 <security>
                     <authentication>
                         <digest username="${env.KEYCLOAK_REMOTE_ISPN_USERNAME}"

@@ -73,7 +73,7 @@ spec:
             - name: KC_DB_USERNAME
               value: "postgres"
             - name: KC_DB_PASSWORD
-              value: S1yuxg0oHF
+              value: iIfRTrJmxk
             - name: KC_DB_SCHEMA
               value: public
             - name: KEYCLOAK_REMOTE_ISPN_USERNAME

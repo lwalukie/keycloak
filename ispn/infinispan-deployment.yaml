@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: acme-ispn-service-headless
+  name: ispn-service-headless
   namespace: keycloak
   labels:
-    app: acme-ispn-service-headless
+    app: ispn-service-headless
 spec:
   ports:
     - name: jgroups
@@ -12,31 +12,31 @@ spec:
       targetPort: 7800
       protocol: TCP
   selector:
-    app: acme-ispn
+    app: ispn
   type: ClusterIP
   clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: acme-ispn
+  name: ispn
   namespace: keycloak
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: acme-ispn
+      app: ispn
   template:
     metadata:
       labels:
-        app: acme-ispn
+        app: ispn
     spec:
       volumes:
       - name: config-volume
         configMap:
           name: kc-config
       containers:
-      - name: acme-ispn
+      - name: ispn
         image: lwalukie/infinispan:v0.0.41
         command: ["/opt/infinispan/bin/server.sh", "-c", "infinispan-keycloak-database.xml"]
         volumeMounts:
@@ -63,15 +63,15 @@ spec:
           containerPort: 11222
         env:
           - name: jgroups.dns.query
-            value: acme-ispn-service-headless.keycloak.svc.cluster.local
+            value: ispn-service-headless.keycloak.svc.cluster.local
           - name: DB_USERNAME
             value: postgres
           - name: DB_PASSWORD
-            value: g7dnnMjAPU
+            value: V2TXsaANKR
           - name: DB_DATABASE
             value: postgres
           - name: DB_HOSTNAME
-            value: acm-db-postgresql-ha-pgpool
+            value: ispn-db-postgresql-ha-pgpool
           - name: JKS_FILENAME
             value: ispn-server.jks
           - name: JKS_PASSWORD
