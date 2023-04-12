@@ -11,6 +11,8 @@ COPY --chown=keycloak:keycloak ./jgroups-multicast-enc.xml /opt/keycloak/conf/jg
 COPY --chown=keycloak:keycloak ./jgroups-multicast-diag.xml /opt/keycloak/conf/jgroups-multicast-diag.xml
 COPY --chown=keycloak:keycloak ./jgroups-jdbcping-enc.xml /opt/keycloak/conf/jgroups-jdbcping-enc.xml
 COPY --chown=keycloak:keycloak ./jgroups.p12 /opt/keycloak/conf/jgroups.p12
+COPY --chown=keycloak:keycloak ./com.drfirst-mapper-0.0.1-SNAPSHOT.jar /opt/keycloak/providers/com.drfirst-mapper-0.0.1-SNAPSHOT.jar
+
 
 COPY --chown=keycloak:keycloak ./cacerts /etc/pki/ca-trust/extracted/java/cacerts
 
